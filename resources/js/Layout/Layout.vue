@@ -4,18 +4,13 @@ import Sidebar from "../Component/Sidebar.vue";
 </script>
 
 <template>
-    <div class="min-h-screen flex flex-col bg-base-200">
-        <!-- ✅ Navbar -->
-        <Navbar />
-
-        <div class="flex flex-1">
-            <!-- ✅ Sidebar -->
-            <Sidebar />
-
-            <!-- ✅ Main Content -->
-            <main class="flex-1 p-6 bg-base-100 rounded-tl-2xl shadow-inner">
-                <slot />
-            </main>
-        </div>
+  <div class="h-screen flex flex-col bg-base-200 overflow-hidden">
+    <Navbar />
+    <div class="flex flex-1 overflow-hidden">
+      <Sidebar />
+      <main class="flex-1 p-6 bg-base-100 rounded-tl-2xl shadow-inner overflow-y-auto">
+        <slot />
+      </main>
     </div>
+  </div>
 </template>

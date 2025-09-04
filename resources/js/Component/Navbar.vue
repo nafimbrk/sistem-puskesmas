@@ -7,7 +7,7 @@ import { route } from 'ziggy-js';
 <nav class="navbar bg-base-100 shadow-md px-6 sticky top-0 z-50">
     <div class="flex-1">
         <Link :href="route('patient.index')" class="text-xl font-bold text-primary hover:text-secondary">
-            Layanan Pasien
+            Layanan Kesehatan
         </Link>
     </div>
     <div class="flex items-center gap-4">

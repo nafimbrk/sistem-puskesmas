@@ -7,6 +7,7 @@ import { computed, onMounted, ref, watch } from "vue";
 import { usePage } from "@inertiajs/vue3";
 import Pagination from "../../Component/Pagination.vue";
 import { Head } from "@inertiajs/vue3";
+import { Users } from "lucide-vue-next";
 
 const showModal = ref(false); // ✅ kontrol modal
 const showEditModal = ref(false);
@@ -111,10 +112,6 @@ function deleteItem() {
 function formatTanggal(data, format) {
     return dayjs(data).format(format);
 }
-
-function formatWaktu(data, format) {
-    return dayjs(data).format(format);
-}
 </script>
 
 <template>
@@ -130,7 +127,7 @@ function formatWaktu(data, format) {
 
         <div class="flex justify-between items-center mb-6">
   <h1 class="text-2xl font-bold text-gray-700 flex items-center gap-2">
-    <i class="fas fa-users text-blue-500"></i> Daftar Pasien
+    <Users class="w-6 h-6 text-blue-500" /> Daftar Pasien
   </h1>
   <button
     class="flex items-center gap-2 px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-lg shadow-md transition"
@@ -196,7 +193,6 @@ function formatWaktu(data, format) {
         <th class="px-4 py-3 text-left text-sm font-semibold">NIK</th>
         <th class="px-4 py-3 text-left text-sm font-semibold">No HP</th>
         <th class="px-4 py-3 text-left text-sm font-semibold">Tgl Lahir</th>
-        <th class="px-4 py-3 text-left text-sm font-semibold">Waktu Daftar</th>
         <th class="px-4 py-3 text-center text-sm font-semibold">Aksi</th>
       </tr>
     </thead>
@@ -212,22 +208,24 @@ function formatWaktu(data, format) {
         <td class="px-4 py-3 text-sm text-gray-600">
           {{ formatTanggal(patient.tanggal_lahir, "DD-MM-YYYY") }}
         </td>
-        <td class="px-4 py-3 text-sm text-gray-600">
-          {{ formatWaktu(patient.created_at, "DD/MM/YYYY HH-A") }}
-        </td>
         <td class="px-4 py-3 text-center flex justify-center gap-2">
-          <button
-            class="px-3 py-2 bg-yellow-400 hover:bg-yellow-500 text-white rounded-md shadow text-sm transition"
-            @click="openEditModal(patient)"
-          >
-            <i class="fa-solid fa-pen"></i>
-          </button>
-          <button
-            @click="openDeleteModal(patient)"
-            class="px-3 py-2 bg-red-500 hover:bg-red-600 text-white rounded-md shadow text-sm transition"
-          >
-            <i class="fa-solid fa-trash"></i>
-          </button>
+          <!-- Edit -->
+                            <button
+                                class="flex items-center gap-2 px-3 py-2 bg-yellow-400 hover:bg-yellow-500 text-white rounded-md shadow text-sm transition"
+                                @click="openEditModal(patient)"
+                            >
+                                <i class="fa-solid fa-pen"></i>
+                                Edit
+                            </button>
+
+                            <!-- Delete -->
+                            <button
+                                @click="openDeleteModal(patient)"
+                                class="flex items-center gap-2 px-3 py-2 bg-red-500 hover:bg-red-600 text-white rounded-md shadow text-sm transition"
+                            >
+                                <i class="fa-solid fa-trash"></i>
+                                Hapus
+                            </button>
         </td>
       </tr>
     </tbody>

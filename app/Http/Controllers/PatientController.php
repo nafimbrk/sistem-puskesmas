@@ -14,6 +14,7 @@ class PatientController extends Controller
         $endDate = $request->endDate;
 
         $patients = Patient::query()
+            ->orderByDesc('id')
             ->when($search, function ($query, $search) {
                 $query->where('nama', 'like', "%$search%")
                     ->orWhere('nik', 'like', "%$search%")
@@ -22,7 +23,7 @@ class PatientController extends Controller
             ->when($startDate && $endDate, function ($query) use ($startDate, $endDate) {
                 $query->whereBetween('created_at', [$startDate, $endDate]);
             })
-            ->paginate(3)
+            ->paginate(5)
             ->withQueryString();
 
         return inertia('Patient/Index', [
